@@ -1,4 +1,4 @@
-desc 'say hello'
-task hello: :environment do
-  CoinCheckService.new.searcher
+desc 'run coincheck process'
+task coincheck: :environment do
+  InitiateCoinReviewService.new.call
 end
