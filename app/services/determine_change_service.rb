@@ -23,7 +23,7 @@ class DetermineChangeService
           buy_in_euro: @coin_session.last_known_value
           ).call
         rest_amount = @coin_session.trade_process.rest_amount
-        rest_amount.amount += current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"]
+        rest_amount.amount += current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
         rest_amount.save
       else
         # I dunno
@@ -38,7 +38,7 @@ class DetermineChangeService
         buy_in_euro: @coin_session.last_known_value
         ).call
       rest_amount = @coin_session.trade_process.rest_amount
-      rest_amount.amount += current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"]
+      rest_amount.amount += current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
       rest_amount.save
     end
   end

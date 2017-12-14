@@ -21,7 +21,7 @@ class InitiateCoinReviewService
       CoinSessionCreationService.new(
         trade_process: trade_process, 
         best_bet_outcome: best_bet_outcome, 
-        buy_in_euro: ENV["INITIAL_VALUE"]
+        buy_in_euro: ENV["INITIAL_VALUE"].to_i
         ).call
     elsif trade_process.coin_sessions.last.status == "running"
       DetermineChangeService.new(
