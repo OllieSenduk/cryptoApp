@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214211802) do
+ActiveRecord::Schema.define(version: 20171214233338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20171214211802) do
     t.bigint "trade_process_id"
     t.bigint "coin_id"
     t.date "end_date"
-    t.integer "amount_in_crypto"
+    t.float "amount_in_crypto"
     t.bigint "previous_coin_id"
     t.bigint "next_coin_id"
     t.datetime "created_at", null: false
