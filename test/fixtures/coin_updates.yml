@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coin_session: one
+  percent_change_1h: 1
+  percent_change_24h: 1
+  percent_change_7d: 1
+  price_in_euro: 1
+
+two:
+  coin_session: two
+  percent_change_1h: 1
+  percent_change_24h: 1
+  percent_change_7d: 1
+  price_in_euro: 1
