@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214233338) do
+ActiveRecord::Schema.define(version: 20171214233537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20171214233338) do
 
   create_table "rest_amounts", force: :cascade do |t|
     t.bigint "trade_process_id"
-    t.float "amount"
-    t.integer "amount_of_transactions"
+    t.float "amount", default: 0.0
+    t.integer "amount_of_transactions", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trade_process_id"], name: "index_rest_amounts_on_trade_process_id"
