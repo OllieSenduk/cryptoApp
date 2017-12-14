@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212144145) do
+ActiveRecord::Schema.define(version: 20171213205441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coin_sessions", force: :cascade do |t|
+    t.bigint "trade_process_id"
+    t.bigint "coin_id"
+    t.date "end_date"
+    t.integer "amount_in_crypto"
+    t.bigint "previous_coin_id"
+    t.bigint "next_coin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coin_id"], name: "index_coin_sessions_on_coin_id"
+    t.index ["next_coin_id"], name: "index_coin_sessions_on_next_coin_id"
+    t.index ["previous_coin_id"], name: "index_coin_sessions_on_previous_coin_id"
+    t.index ["trade_process_id"], name: "index_coin_sessions_on_trade_process_id"
+  end
+
+  create_table "coin_updates", force: :cascade do |t|
+    t.bigint "coin_session_id"
+    t.integer "percent_change_1h"
+    t.integer "percent_change_24h"
+    t.integer "percent_change_7d"
+    t.integer "price_in_euro"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coin_session_id"], name: "index_coin_updates_on_coin_session_id"
+  end
+
+  create_table "coins", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol"
+    t.integer "last_known_price_in_euros"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trade_processes", force: :cascade do |t|
+    t.date "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +72,7 @@ ActiveRecord::Schema.define(version: 20171212144145) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "coin_sessions", "coins"
+  add_foreign_key "coin_sessions", "trade_processes"
+  add_foreign_key "coin_updates", "coin_sessions"
 end
