@@ -5,10 +5,8 @@ class BestBetService
 
   def call
     best_three = compile_scores.first(5)
-    puts "best_three #{best_three}"
     best_three.each do |coin_symbol, evaluation|
       included_in = compose_inclusion_check(coin_symbol)
-      puts "included_in #{included_in}"
       puts "#{coin_symbol} at #{evaluation} points"
       included_in.each { |classification| puts "included in #{classification.to_s}" }
     end
