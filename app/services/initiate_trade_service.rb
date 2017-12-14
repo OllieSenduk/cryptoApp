@@ -3,6 +3,8 @@ class InitiateTradeService
   end
 
   def call
-    tradeprocess = TradeProcess.create
+    trade_process = TradeProcess.create
+    RestAmount.create(trade_process: trade_process)
+    return trade_process
   end
 end
