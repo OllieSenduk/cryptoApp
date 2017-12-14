@@ -22,6 +22,7 @@ group :development do
 end
 
 # added gems
+gem 'rails_admin', '~> 1.2'
 
 group :development, :test do
   gem 'pry-byebug'
