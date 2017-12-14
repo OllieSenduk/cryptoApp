@@ -4,12 +4,13 @@ class BestBetService
   end
 
   def call
-    best_three = compile_scores.first(5)
-    best_three.each do |coin_symbol, evaluation|
-      included_in = compose_inclusion_check(coin_symbol)
-      puts "#{coin_symbol} at #{evaluation} points"
-      included_in.each { |classification| puts "included in #{classification.to_s}" }
-    end
+    compile_scores.first(5)
+    # best_three = compile_scores.first(1)
+    # best_three.each do |coin_symbol, evaluation|
+    #   included_in = compose_inclusion_check(coin_symbol)
+    #   puts "#{coin_symbol} at #{evaluation} points"
+    #   included_in.each { |classification| puts "included in #{classification.to_s}" }
+    # end
   end
 
   private
@@ -31,15 +32,18 @@ class BestBetService
   def add_to_hash(collection, modifier, result)
     collection.each do |coin|
       if result.has_key?(coin["symbol"])
-        result[coin["symbol"]] += modifier
+        result[coin["symbol"]]["points"] += modifier
       else
-        result[coin["symbol"]] = modifier
+        result[coin["symbol"]] = {
+          "points" => modifier, 
+          "data" => coin
+        }
       end
     end
   end
 
   def sort_by_best_result(result)
-    result.sort_by(&:last).reverse
+    result.sort_by {|item| item.last["points"] }.reverse
   end
 
   def compose_inclusion_check(coin_symbol)

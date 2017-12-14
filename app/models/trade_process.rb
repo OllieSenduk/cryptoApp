@@ -1,3 +1,4 @@
 class TradeProcess < ApplicationRecord
-  has_one :coin_session
+  has_many :coin_sessions
+  has_one :rest_amount
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213205441) do
+ActiveRecord::Schema.define(version: 20171214211802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20171213205441) do
     t.bigint "next_coin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "running"
+    t.float "last_known_value"
     t.index ["coin_id"], name: "index_coin_sessions_on_coin_id"
     t.index ["next_coin_id"], name: "index_coin_sessions_on_next_coin_id"
     t.index ["previous_coin_id"], name: "index_coin_sessions_on_previous_coin_id"
@@ -47,6 +49,15 @@ ActiveRecord::Schema.define(version: 20171213205441) do
     t.integer "last_known_price_in_euros"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rest_amounts", force: :cascade do |t|
+    t.bigint "trade_process_id"
+    t.float "amount"
+    t.integer "amount_of_transactions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trade_process_id"], name: "index_rest_amounts_on_trade_process_id"
   end
 
   create_table "trade_processes", force: :cascade do |t|
@@ -75,4 +86,5 @@ ActiveRecord::Schema.define(version: 20171213205441) do
   add_foreign_key "coin_sessions", "coins"
   add_foreign_key "coin_sessions", "trade_processes"
   add_foreign_key "coin_updates", "coin_sessions"
+  add_foreign_key "rest_amounts", "trade_processes"
 end
