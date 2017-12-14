@@ -17,7 +17,7 @@ class DetermineChangeService
         @coin_session.status = "stopped"
         @coin_session.save
         CoinSessionCreationService.new(
-          trade_process: @coin_session.trade_process, 
+          trade_process: @coin_session.trade_process,
           best_bet_outcome: @best_bet_outcome,
           value_in_euro: current_value_of_crypto_in_euro,
           buy_in_euro: @coin_session.last_known_value
@@ -32,7 +32,7 @@ class DetermineChangeService
       @coin_session.status = "stopped"
       @coin_session.save
       CoinSessionCreationService.new(
-        trade_process: @coin_session.trade_process, 
+        trade_process: @coin_session.trade_process,
         best_bet_outcome: @best_bet_outcome,
         value_in_euro: current_value_of_crypto_in_euro,
         buy_in_euro: @coin_session.last_known_value

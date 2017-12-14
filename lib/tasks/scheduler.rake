@@ -1,4 +1,4 @@
 desc 'run coincheck process'
 task coincheck: :environment do
-  InitiateCoinReviewService.new.call 
+  InitiateCoinReviewService.new.call
 end
