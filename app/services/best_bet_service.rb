@@ -4,7 +4,7 @@ class BestBetService
   end
 
   def call
-    compile_scores.first(5)
+    compile_scores
     # best_three = compile_scores.first(1)
     # best_three.each do |coin_symbol, evaluation|
     #   included_in = compose_inclusion_check(coin_symbol)
