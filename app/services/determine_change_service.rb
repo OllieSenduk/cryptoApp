@@ -19,7 +19,7 @@ class DetermineChangeService
           trade_process: @coin_session.trade_process,
           best_bet_outcome: @best_bet_outcome,
           value_in_euro: current_value_of_crypto_in_euro,
-          buy_in_euro: @coin_session.last_known_value
+          buy_in_euro: ENV["INITIAL_VALUE"].to_i
           ).call
         rest_amount = @coin_session.trade_process.rest_amount
         rest_amount.amount += current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
@@ -37,7 +37,7 @@ class DetermineChangeService
           trade_process: @coin_session.trade_process,
           best_bet_outcome: @best_bet_outcome,
           value_in_euro: current_value_of_crypto_in_euro,
-          buy_in_euro: @coin_session.last_known_value
+          buy_in_euro: ENV["INITIAL_VALUE"].to_i
           ).call
         rest_amount = @coin_session.trade_process.rest_amount
         rest_amount.amount += current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
@@ -53,7 +53,7 @@ class DetermineChangeService
         trade_process: @coin_session.trade_process,
         best_bet_outcome: @best_bet_outcome,
         value_in_euro: current_value_of_crypto_in_euro,
-        buy_in_euro: @coin_session.last_known_value
+        buy_in_euro: ENV["INITIAL_VALUE"].to_i
         ).call
       rest_amount = @coin_session.trade_process.rest_amount
       rest_amount.amount += current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
