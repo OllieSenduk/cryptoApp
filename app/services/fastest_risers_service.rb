@@ -5,9 +5,9 @@ class FastestRisersService
 
   def call
      {
-      best_last_hour: sort_by_change_1h,
-      best_last_24h: sort_by_change_24h,
-      best_last_week: sort_by_change_7d
+      best_last_hour: sort_by_change_1h.first(10),
+      best_last_24h: sort_by_change_24h.first(10),
+      best_last_week: sort_by_change_7d.first(10)
     }
   end
 
