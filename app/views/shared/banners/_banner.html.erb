@@ -1,0 +1,14 @@
+<div class="banner-text">
+  <h1>
+    Automaat
+  </h1>
+  <p class="introduction">
+    An experiment
+  </p>
+  <div class="last-updated">
+    <i class="fa fa-gears"></i>
+    <p>
+      Last update ran on <%= CoinSession.last.updated_at.in_time_zone("Amsterdam").strftime("%H:%M on %A, %m %Y") %>
+    </p>
+  </div>
+</div>

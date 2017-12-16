@@ -1,0 +1,45 @@
+table.simple-stats {
+  td.header {
+    font-size: 15px;
+    font-weight: lighter;
+    padding-right: 60px;
+  }
+  tr > td:last-child {
+    text-align: right;
+  }
+  tr {
+    border-bottom: 1px solid $red;
+  }
+}
+
+table.coins {
+  thead {
+    th {
+      padding-right: 20px;
+      line-height: 55px;
+      font-weight: 300;
+    }
+    tr > th:nth-child(3) {
+      width: 150px;
+    }
+    tr > th:nth-child(4) {
+      padding-right: 0;
+    }
+  }
+  tbody {
+    td {
+      line-height: 30px;
+      font-weight: 300;
+    }
+    tr > td:nth-child(4) {
+      text-align: right;
+    }
+    tr {
+      background-color: $light-gray;
+      transition: background-color 200ms ease;
+    }
+    tr:hover {
+      background-color: #cecaca;
+    }
+  }
+}

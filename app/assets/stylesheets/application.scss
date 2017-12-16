@@ -11,5 +11,17 @@
 
 // Your CSS partials
 @import "layouts/index";
+@import "components/crypto_icons/cryptocoins";
 @import "components/index";
 @import "pages/index";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+  .all-content {
+    flex: 1 0 auto;
+  }
+}
