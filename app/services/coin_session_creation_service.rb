@@ -28,7 +28,8 @@ class CoinSessionCreationService
       @coin = Coin.find_by_symbol(@best_coin_symbol)
     else
       @coin = Coin.create(
-        symbol: @best_coin_symbol
+        symbol: @best_coin_symbol,
+        name: @best_bet_outcome[0][1]["data"]["name"]
         )
     end
   end

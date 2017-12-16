@@ -1,0 +1,137 @@
+.banner-columns-container {
+  display: flex;
+  justify-content: space-between;
+  .banner-text, .banner-stats {
+    flex: 0 0 50%;
+  }
+}
+
+.banner-text-full {
+  border-top: 10px solid $pink;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.banner-text {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+   text-shadow: -3px 0 black, 0 3px red, 3px 0 green, 0 -3px orange;
+ }
+ .introduction {
+  font-weight: 200;
+  font-style: italic;
+}
+.last-updated {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: lighter;
+  }
+  i.fa {
+    margin-right: 10px;
+    background-color: $red;
+    color: white;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    opacity: 0.5;
+    font-size: 16px;
+  }
+}
+}
+.banner-stats {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $red;
+  padding: 0 20px;
+  flex-direction: column;
+  .banner-content {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border: 10px solid $pink;
+    height: 300px;
+    max-width: 450px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      margin: 0;
+      color: white;
+      position: absolute;
+      text-align: center;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .banner-stats {
+    .banner-content {
+      h2 {
+        font-size: 80px;
+        left: -25px;
+        right: -25px;
+      }
+    }
+  }
+  .banner-text {
+    border-bottom: 10px solid $pink;
+  }
+  .banner-columns-container {
+    height: 200vh;
+    overflow: hidden;
+    flex-direction: column;
+    .banner-text, .banner-stats {
+      flex: 0 0 50%;
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  .banner-stats {
+    .banner-content {
+      h2 {
+        font-size: 100px;
+        left: -70px;
+        right: -70px;
+      }
+    }
+  }
+  .banner-text {
+    border-right: 10px solid $pink;
+  }
+  .banner-columns-container {
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: row;
+    .banner-text, .banner-stats {
+      flex: 0 0 50%;
+    }
+  }
+}
+
+.banner-content.white {
+  margin-top: 10px;
+  background-color: white;
+}

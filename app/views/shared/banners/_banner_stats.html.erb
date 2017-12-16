@@ -1,0 +1,65 @@
+<div class="banner-stats">
+  <div class="banner-content" style="background-image:url('<%= image_path 'background.gif' %>');">
+    <% amount = trade_process.coin_sessions.count %>
+    <h2>
+      <%= amount %> <%= amount > 1 ? 'sessions' : 'session' %>
+    </h2>
+  </div>
+  <div class="banner-content white">
+<!--     rest amount
+    types of coins
+    amount of transactions
+    amount of transactions with profit
+    amount of transactions with loss
+
+    current session:
+    type of coin
+    current value of coin
+    amount in crypto -->
+
+    <table class="simple-stats">
+      <tbody>
+        <tr>
+          <td class="header">
+            Rest amount
+          </td>
+          <td>
+            € <%= trade_process.rest_amount.amount.round(2) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">
+            Different types of coins
+          </td>
+          <td>
+            <%= trade_process.coins.count %>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">
+            Amount of transactions
+          </td>
+          <td>
+            <%= trade_process.rest_amount.amount_of_transactions %>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">
+            Amount of transactions with profit
+          </td>
+          <td>
+            <%= CoinSession.where("last_known_value > ?", ENV["INITIAL_VALUE"]).count %>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">
+            Amount of transactions with loss
+          </td>
+          <td>
+            <%= CoinSession.where("last_known_value < ?", ENV["INITIAL_VALUE"]).count %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

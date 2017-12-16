@@ -32,6 +32,7 @@ class DetermineChangeService
       elsif current_value_of_crypto_in_euro < @coin_session.last_known_value
         # SELL NOW
         @coin_session.status = "stopped"
+        @coin_session.last_known_value = current_value_of_crypto_in_euro
         @coin_session.save
         CoinSessionCreationService.new(
           trade_process: @coin_session.trade_process,
