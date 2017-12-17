@@ -1,54 +1,25 @@
 <div class="banner-columns-container">
   <%= render partial: "shared/banners/banner" %>
 
-  <% if @trade_process %>
-    <%= render partial: "shared/banners/banner_stats", locals: { trade_process: @trade_process } %>
-  <% end %>
+  <div class="banner-stats">
+    <div class="banner-content" style="background-image:url('<%= image_path 'background.gif' %>');">
+      <h2>
+        <%= @amount_of_trade_processes %> <%= @amount_of_trade_processes > 1 ? 'trade processes' : 'trade process' %>
+      </h2>
+    </div>
+    <div class="banner-content white">
+      <ul class="trade-list">
+        <% @trade_processes.each_with_index do |trade_process, index| %>
+          <li>
+            <%= link_to trade_process_path(trade_process) do %>
+            <i class="fa fa-check"></i> Trade Process number <strong><%= index %></strong>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
 </div>
 
-<div class="banner-text-full">
-  <div class="banner-content">
-      <h2 class="text-center">
-        All coins used
-      </h2>
-      <table class="coins">
-        <thead>
-          <tr>
-            <th>
-              Icon
-            </th>
-            <th>
-              Symbol
-            </th>
-            <th>
-              Name
-            </th>
-            <th>
-              Times used
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @coins.each do |coin| %>
-            <tr>
-              <td>
-                <i class="cc <%= coin.symbol %>" title="<%= coin.symbol %>"></i> 
-              </td>
-              <td>
-                <%= coin.symbol %>
-              </td>
-                <td>
-                  <% if coin.name %>
-                    <%= coin.name %>
-                  <% end %>
-                </td>
-              <td>
-                <%= coin.coin_sessions.count %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-  </div>
-  <%= will_paginate @coins %>
-</div>
+<%= render partial: "shared/coin_stats", locals: { coins: @coins } %>

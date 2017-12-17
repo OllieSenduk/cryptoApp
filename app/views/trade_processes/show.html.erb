@@ -1,0 +1,9 @@
+<div class="banner-columns-container">
+  <%= render partial: "shared/banners/banner" %>
+
+  <% if @trade_process %>
+    <%= render partial: "shared/banners/banner_stats", locals: { trade_process: @trade_process } %>
+  <% end %>
+</div>
+
+

@@ -1,0 +1,16 @@
+.trade-list {
+  width: 100%;
+  list-style: none;
+  height: 100%;
+  padding-top: 20px;
+  a {
+    color: $red;
+    text-decoration: none;
+    &:hover, &:focus, &:visited, &:active {
+      color: $red;
+    }
+    .fa {
+      margin-right: 50px;
+    }
+  }
+}
