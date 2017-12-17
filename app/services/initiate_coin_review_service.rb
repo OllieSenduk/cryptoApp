@@ -12,6 +12,7 @@ class InitiateCoinReviewService
       end
     else
       @trade_process = InitiateTradeService.new.call
+      check_coin_session_status(@trade_process)
     end
   end
 
