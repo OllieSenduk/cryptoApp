@@ -9,12 +9,15 @@
     </div>
     <div class="banner-content white">
       <ul class="trade-list">
+        <h3 class="text-center">
+          Trade processes
+        </h3>
         <% @trade_processes.each_with_index do |trade_process, index| %>
         <li class="<%= 'even' if index.even? %>">
           <%= link_to trade_process_path(trade_process) do %>
           <i class="fa fa-check"></i> 
           <p>
-            Trade Process number
+            Last coin: <%= trade_process.coin_sessions.last.coin.name %>
           </p> 
           <strong>
             <%= index + 1 %>
@@ -22,6 +25,7 @@
           <% end %>
         </li>
         <% end %>
+        <%= will_paginate @trade_processes %>
       </ul>
     </div>
   </div>

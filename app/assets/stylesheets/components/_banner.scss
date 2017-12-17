@@ -1,6 +1,7 @@
 .banner-columns-container {
   display: flex;
   justify-content: space-between;
+  position: relative;
   .banner-text, .banner-stats {
     flex: 0 0 50%;
   }

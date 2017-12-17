@@ -19,7 +19,7 @@ class CoinSessionCreationService
       trade_process: @trade_process, 
       coin: @coin,
       amount_in_crypto: (@buy_in_euro / @best_bet_amount_in_euro),
-      last_known_value: @buy_in_euro
+      last_known_value: (@best_bet_amount_in_euro * @buy_in_euro)
       )
   end
 
@@ -29,7 +29,8 @@ class CoinSessionCreationService
     else
       @coin = Coin.create(
         symbol: @best_coin_symbol,
-        name: @best_bet_outcome[0][1]["data"]["name"]
+        name: @best_bet_outcome[0][1]["data"]["name"],
+        coin_market_id: @best_bet_outcome[0][1]["data"]["id"]
         )
     end
   end

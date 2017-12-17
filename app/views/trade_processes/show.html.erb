@@ -1,4 +1,7 @@
 <div class="banner-columns-container">
+  <div class="breadcrumbs">
+    <%= link_to "tradeprocess overview", root_path %> < <span>Trade process number <%= @trade_process.id %></span>
+  </div>
   <%= render partial: "shared/banners/banner" %>
 
   <% if @trade_process %>
