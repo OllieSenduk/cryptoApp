@@ -5,8 +5,8 @@ class DetermineChangeService
   end
 
   def call
-    current_value_of_crypto_in_euro = @coin_session.amount_in_crypto * current_price_in_euro
     current_price_in_euro = SingleCoinDataService.new(coin: @coin_session.coin).call[0]["price_eur"].to_f
+    current_value_of_crypto_in_euro = @coin_session.amount_in_crypto * current_price_in_euro
     if coin_in_best?
       if current_value_of_crypto_in_euro >= @coin_session.last_known_value
         # POTENTIALLY KEEP
