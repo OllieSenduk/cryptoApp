@@ -12,7 +12,7 @@
         <% @trade_processes.each_with_index do |trade_process, index| %>
           <li>
             <%= link_to trade_process_path(trade_process) do %>
-            <i class="fa fa-check"></i> Trade Process number <strong><%= index %></strong>
+            <i class="fa fa-check"></i> Trade Process number <strong><%= index + 1 %></strong>
             <% end %>
           </li>
         <% end %>
