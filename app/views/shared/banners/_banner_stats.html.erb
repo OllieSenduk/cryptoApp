@@ -40,7 +40,7 @@
             Amount of transactions
           </td>
           <td>
-            <%= trade_process.rest_amount.amount_of_transactions %>
+            <%= trade_process.coin_sessions.count %>
           </td>
         </tr>
         <tr>
@@ -48,7 +48,7 @@
             Amount of transactions with profit
           </td>
           <td>
-            <%= CoinSession.where("last_known_value > ?", ENV["INITIAL_VALUE"]).count %>
+            <%= trade_process.coin_sessions.where("last_known_value > ?", ENV["INITIAL_VALUE"]).count %>
           </td>
         </tr>
         <tr>
@@ -56,7 +56,7 @@
             Amount of transactions with loss
           </td>
           <td>
-            <%= CoinSession.where("last_known_value < ?", ENV["INITIAL_VALUE"]).count %>
+            <%= trade_process.coin_sessions.where("last_known_value < ?", ENV["INITIAL_VALUE"]).count %>
           </td>
         </tr>
       </tbody>

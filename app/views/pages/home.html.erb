@@ -10,11 +10,17 @@
     <div class="banner-content white">
       <ul class="trade-list">
         <% @trade_processes.each_with_index do |trade_process, index| %>
-          <li>
-            <%= link_to trade_process_path(trade_process) do %>
-            <i class="fa fa-check"></i> Trade Process number <strong><%= index + 1 %></strong>
-            <% end %>
-          </li>
+        <li class="<%= 'even' if index.even? %>">
+          <%= link_to trade_process_path(trade_process) do %>
+          <i class="fa fa-check"></i> 
+          <p>
+            Trade Process number
+          </p> 
+          <strong>
+            <%= index + 1 %>
+          </strong>
+          <% end %>
+        </li>
         <% end %>
       </ul>
     </div>

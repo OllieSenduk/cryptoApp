@@ -3,11 +3,27 @@
   list-style: none;
   height: 100%;
   padding-top: 20px;
+  padding-left: 0;
+  li.even {
+    background-color: $light-gray;
+  }
+  li:hover {
+    background-color: #cecaca;
+  }
   a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
     color: $red;
     text-decoration: none;
     &:hover, &:focus, &:visited, &:active {
       color: $red;
+    }
+    p {
+      flex: 1 0 auto;
+      margin: 0;
     }
     .fa {
       margin-right: 50px;

@@ -11,26 +11,27 @@ class InitiateCoinReviewService
         check_coin_session_status(trade_process)
       end
     else
-      @trade_process = InitiateTradeService.new.call
-      check_coin_session_status(@trade_process)
+      trade_process = InitiateTradeService.new.call
+      check_coin_session_status(trade_process)
     end
   end
 
   private
 
   def check_coin_session_status(trade_process)
-    if @trade_process.coin_sessions.last.nil?
+    if trade_process.coin_sessions.last.nil?
       CoinSessionCreationService.new(
-        trade_process: @trade_process, 
+        trade_process: trade_process, 
         best_bet_outcome: @best_bet_outcome, 
         buy_in_euro: ENV["INITIAL_VALUE"].to_i
         ).call
-    elsif @trade_process.coin_sessions.last.status == "running"
+      trade_process.rest_amount.amount_of_transactions += 1
+    elsif trade_process.coin_sessions.last.status == "running"
       DetermineChangeService.new(
-        coin_session: @trade_process.coin_sessions.last, 
+        coin_session: trade_process.coin_sessions.last, 
         best_bet_outcome: @best_bet_outcome
         ).call
-    elsif @trade_process.coin_sessions.last.status == "pending"
+    elsif trade_process.coin_sessions.last.status == "pending"
       # This probably triggers when the transaction hasn't been finalized yet - Possibly stop
     else # It stopped
       # This probably triggers when the transaction hasn't been finalized yet - Possibly stop
@@ -42,9 +43,9 @@ class InitiateCoinReviewService
     if trade_process.rest_amount.amount > ENV["INITIAL_VALUE"].to_i
       trade_process.rest_amount.amount -= 100
       trade_process.save 
-      @trade_process = InitiateTradeService.new.call
+      trade_process = InitiateTradeService.new.call
     else
-      @trade_process = TradeProcess.last
+      trade_process = TradeProcess.last
     end
   end
 
