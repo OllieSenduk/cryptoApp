@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'json'
-class CoinDataService
+class AllCoinDataService
 
   def initialize
   end
