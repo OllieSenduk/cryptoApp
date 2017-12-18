@@ -1,4 +1,4 @@
-<div class="banner-columns-container">
+<div class="banner-columns-container border-bottom">
   <div class="breadcrumbs">
     <%= link_to "tradeprocess overview", root_path %> < <span>Trade process number <%= @trade_process.id %></span>
   </div>
@@ -10,3 +10,36 @@
 </div>
 
 
+<div class="container">
+  <div class="row">
+    <h2 class="text-center">
+      Session logs
+    </h2>
+    <% @coin_sessions.reverse.each do |coin_session| %>
+      
+      <% unless coin_session.session_log.nil? %>
+        <div class="col-xs-12 col-lg-12">
+          <h3>
+            <%= coin_session.coin.name %>
+          </h3>
+          <strong>
+            <%= coin_session.last_known_value.round(2) %>
+          </strong>
+          <div class="log-card">
+              <% if coin_session.session_log.change_log == "" %>
+                <p>
+                  Nothing here yet unfortunately
+                </p>
+              <% else %>
+              <%= simple_format coin_session.session_log.change_log %>
+              <% end %>
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+    <div class="paginate-logs">
+      <%= will_paginate @coin_sessions %>
+    </div>
+  </div>
+</div>

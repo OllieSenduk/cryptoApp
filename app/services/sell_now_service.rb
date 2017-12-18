@@ -15,7 +15,9 @@ class SellNowService
 
   def change_rest_amount
     rest_amount = @coin_session.trade_process.rest_amount
-    rest_amount.amount += @current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
+    if @current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i > 100
+      rest_amount.amount += @current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
+    end
     rest_amount.amount_of_transactions += 1
     rest_amount.save
   end
