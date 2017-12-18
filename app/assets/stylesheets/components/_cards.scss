@@ -1,4 +1,5 @@
 .log-card {
+  min-height: 200px;
   background-color: white;
   margin: 20px;
   border-radius: 2px;
@@ -7,4 +8,11 @@
   padding: 20px;
   font-family: courier;
   font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  p {
+    width: 100%;
+  }
 }

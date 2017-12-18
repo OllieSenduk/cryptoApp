@@ -15,25 +15,11 @@
     <h2 class="text-center">
       Session logs
     </h2>
-    <% @coin_sessions.reverse.each do |coin_session| %>
+    <% @coin_sessions.each do |coin_session| %>
       
       <% unless coin_session.session_log.nil? %>
-        <div class="col-xs-12 col-lg-12">
-          <h3>
-            <%= coin_session.coin.name %>
-          </h3>
-          <strong>
-            <%= coin_session.last_known_value.round(2) %>
-          </strong>
-          <div class="log-card">
-              <% if coin_session.session_log.change_log == "" %>
-                <p>
-                  Nothing here yet unfortunately
-                </p>
-              <% else %>
-              <%= simple_format coin_session.session_log.change_log %>
-              <% end %>
-          </div>
+        <div class="col-xs-12 col-lg-6">
+          <%= render partial: "shared/cards/log_card", locals: { coin_session: coin_session } %>
         </div>
       <% end %>
 
