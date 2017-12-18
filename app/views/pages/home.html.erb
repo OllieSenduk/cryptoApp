@@ -12,19 +12,27 @@
         <h3 class="text-center">
           Trade processes
         </h3>
-        <% @trade_processes.each_with_index do |trade_process, index| %>
-        <li class="<%= 'even' if index.even? %>">
-          <%= link_to trade_process_path(trade_process) do %>
-          <i class="fa fa-check"></i> 
-          <p>
-            Last coin: <%= trade_process.coin_sessions.last.coin.name %> - RA: € <%= trade_process.rest_amount.amount.round(2) %>
-          </p> 
-          <strong>
-            <%= index + 1 %>
-          </strong>
-          <% end %>
-        </li>
-        <% end %>
+        <table class="trade_processes">
+          <tbody>
+            <% @trade_processes.each_with_index do |trade_process, index| %>
+            <tr class="<%= 'even' if index.even? %>">
+              <td>
+                <%= link_to trade_process_path(trade_process) do %>
+                  <%= index + 1 %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to trade_process_path(trade_process) do %>
+                  <%= trade_process.coin_sessions.last.coin.name %>
+                <% end %>
+              </td>
+              <td>
+                € <%= trade_process.rest_amount.amount.round(2) %>
+              </td>
+            </tr>
+            <% end %>
+         </tbody>
+        </table>
         <%= will_paginate @trade_processes %>
       </ul>
     </div>

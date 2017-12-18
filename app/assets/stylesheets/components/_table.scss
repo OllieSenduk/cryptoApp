@@ -2,13 +2,38 @@ table.simple-stats {
   td.header {
     font-size: 15px;
     font-weight: lighter;
-    padding-right: 60px;
   }
   tr > td:last-child {
     text-align: right;
   }
   tr {
     border-bottom: 1px solid $red;
+  }
+}
+
+table.trade_processes {
+  width: 100%;
+  tr.even {
+    background-color: $light-gray;
+  }
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    color: $red;
+    text-decoration: none;
+    &:hover, &:focus, &:visited, &:active {
+      color: $red;
+    }
+    p {
+      flex: 1 0 auto;
+      margin: 0;
+    }
+    .fa {
+      margin-right: 50px;
+    }
   }
 }
 

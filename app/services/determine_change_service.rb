@@ -30,7 +30,7 @@ class DetermineChangeService
       if @current_value_of_crypto_in_euro == @coin_session.last_known_value
         @session_log.change_log << "\nValue unchanged - DetermineChangeService (#{@coin_session.last_known_value.round(3)} => #{@current_value_of_crypto_in_euro.round(3)})"
       else
-        @session_log.change_log << "\nValue unchanged - DetermineChangeService (#{@coin_session.last_known_value.round(3)} => #{@current_value_of_crypto_in_euro.round(3)})"
+        @session_log.change_log << "\nValue went up - DetermineChangeService (#{@coin_session.last_known_value.round(3)} => #{@current_value_of_crypto_in_euro.round(3)})"
       end
       @session_log.save
       # POTENTIALLY KEEP

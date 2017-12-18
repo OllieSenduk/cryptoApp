@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 0 20px;
 }
 
 .banner-text {
@@ -24,6 +25,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  a {
+    color: $gray;
+    text-decoration: none;
+    &:hover, &:focus, &:visited, &:active {
+      color: $gray;
+      text-decoration: none;
+    }
+  }
   h1 {
    text-shadow: -3px 0 black, 0 3px red, 3px 0 green, 0 -3px orange;
  }
@@ -58,6 +67,7 @@
 }
 }
 .banner-stats {
+  padding: 0 20px;
   height: 100vh;
   width: 100vw;
   display: flex;
