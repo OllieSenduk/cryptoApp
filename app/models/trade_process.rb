@@ -4,10 +4,6 @@ class TradeProcess < ApplicationRecord
   has_one :rest_amount
 
   after_create :decide_strategy
-  # Add a strategy model, name
-  # belongs_to trade_process
-  # after_create :decide_strategy -> Add it to the tradeprocess
-  # Go into a Service dependent on the strategy
 
   private
 
