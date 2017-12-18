@@ -30,8 +30,7 @@ class SellNowService
     CoinSessionCreationService.new(
       trade_process: @coin_session.trade_process,
       best_bet_outcome: @best_bet_outcome,
-      value_in_euro: @current_value_of_crypto_in_euro,
-      buy_in_euro: ENV["INITIAL_VALUE"].to_i
+      buy_in_euro: @current_value_of_crypto_in_euro
       ).call
   end
 end

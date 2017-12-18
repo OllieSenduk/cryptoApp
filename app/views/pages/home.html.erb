@@ -17,7 +17,7 @@
           <%= link_to trade_process_path(trade_process) do %>
           <i class="fa fa-check"></i> 
           <p>
-            Last coin: <%= trade_process.coin_sessions.last.coin.name %>
+            Last coin: <%= trade_process.coin_sessions.last.coin.name %> - RA: € <%= trade_process.rest_amount.amount.round(2) %>
           </p> 
           <strong>
             <%= index + 1 %>

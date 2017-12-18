@@ -15,12 +15,13 @@ class CoinSessionCreationService
   private
 
   def create_new_coin_session
-    CoinSession.create!(
+    coin_session = CoinSession.new(
       trade_process: @trade_process, 
       coin: @coin,
-      amount_in_crypto: (@buy_in_euro / @best_bet_amount_in_euro),
-      last_known_value: (@best_bet_amount_in_euro * @buy_in_euro)
+      amount_in_crypto: (@buy_in_euro / @best_bet_amount_in_euro)
       )
+      coin_session.last_known_value = coin_session.amount_in_crypto * @best_bet_amount_in_euro
+      coin_session.save
   end
 
   def coin_exists
