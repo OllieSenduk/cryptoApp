@@ -11,7 +11,7 @@ class TradeProcessesController < ApplicationController
   private
 
   def set_timeline
-    timeline_raw = @trade_process.coin_sessions.where(updated_at: (Time.now - 1.hour)..Time.now).map { |coin_session| [coin_session.coin.symbol, coin_session.created_at.strftime("%Y-%m-%d %H:%M"), coin_session.updated_at.strftime("%Y-%m-%d %H:%M")]}
+    timeline_raw = @trade_process.coin_sessions.where(updated_at: (Time.now - 24.hours)..Time.now).map { |coin_session| [coin_session.coin.symbol, coin_session.created_at.strftime("%Y-%m-%d %H:%M"), coin_session.updated_at.strftime("%Y-%m-%d %H:%M")]}
     @timeline = timeline_raw - timeline_raw.select { |item| item[1] == item[2] }
   end
 end

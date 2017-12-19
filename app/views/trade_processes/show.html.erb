@@ -40,13 +40,13 @@
   <div class="banner-text-full">
     <div class="banner-content-chart">
       <h2 class="text-center">
-        Last hour
+        Last three hours
       </h2>
-      <%= line_chart @trade_process.coin_sessions.where(updated_at: (Time.now - 1.hour)..Time.now).group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
+      <%= line_chart @trade_process.coin_sessions.where(updated_at: (Time.now - 3.hour)..Time.now).group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
       colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
       curve: true,
-      min: 50, 
-      max: 150, discrete: true 
+      min: 70, 
+      max: 120, discrete: true 
       %>
     </div>
     <div class="banner-content-chart">
