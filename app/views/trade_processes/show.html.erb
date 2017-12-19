@@ -12,13 +12,13 @@
 <% if @timeline.any? %>
   <div class="timeline-container border-bottom">
     <h2 class="text-center">
-      Timeline last hour
+      Timeline last day
     </h2>
       <%= timeline @timeline, adapter: "google" %>
   </div>
 <% end %>
 <div class="banner-columns-container">
-  <div class="logs-container">
+  <div class="logs-container border-right">
     <div class="row">
       <h2 class="text-center">
         Session logs
@@ -42,22 +42,26 @@
       <h2 class="text-center">
         Last three hours
       </h2>
-      <%= line_chart @trade_process.coin_sessions.where(updated_at: (Time.now - 3.hour)..Time.now).group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
+      <% last_three_hours = @trade_process.coin_sessions.where(updated_at: (Time.now - 3.hour)..Time.now) %>
+      <%= line_chart last_three_hours.group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
       colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
       curve: true,
-      min: 70, 
-      max: 120, discrete: true 
+      min: last_three_hours.order(last_known_value: :asc).limit(1).first.last_known_value - 10, 
+      max: last_three_hours.order(last_known_value: :desc).limit(1).first.last_known_value + 10, 
+      discrete: true 
       %>
     </div>
     <div class="banner-content-chart">
       <h2 class="text-center">
         Last day
       </h2>
-      <%= line_chart @trade_process.coin_sessions.where(updated_at: (Time.now - 24.hours)..Time.now).group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
+      <% last_24_hours = @trade_process.coin_sessions.where(updated_at: (Time.now - 24.hours)..Time.now) %>
+      <%= line_chart last_24_hours.group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
       colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
       curve: true,
-      min: 50, 
-      max: 150, discrete: true 
+      min: last_24_hours.order(last_known_value: :asc).limit(1).first.last_known_value - 10, 
+      max: last_24_hours.order(last_known_value: :desc).limit(1).first.last_known_value + 10, 
+      discrete: true 
       %>
     </div>
   </div>
