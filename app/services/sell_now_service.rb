@@ -15,7 +15,9 @@ class SellNowService
 
   def change_rest_amount
     rest_amount = @coin_session.trade_process.rest_amount
-    rest_amount.amount += @current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
+    if @current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i > 0
+      rest_amount.amount += @current_value_of_crypto_in_euro - ENV["INITIAL_VALUE"].to_i
+    end
     rest_amount.amount_of_transactions += 1
     rest_amount.save
   end
@@ -30,7 +32,7 @@ class SellNowService
     CoinSessionCreationService.new(
       trade_process: @coin_session.trade_process,
       best_bet_outcome: @best_bet_outcome,
-      buy_in_euro: @current_value_of_crypto_in_euro
+      buy_in_euro: (@current_value_of_crypto_in_euro > ENV["INITIAL_VALUE"].to_i ? ENV["INITIAL_VALUE"].to_i : @current_value_of_crypto_in_euro)
       ).call
   end
 end

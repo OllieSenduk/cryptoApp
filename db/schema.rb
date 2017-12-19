@@ -9,8 +9,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
 ActiveRecord::Schema.define(version: 20171218201137) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 20171218201137) do
     t.index ["trade_process_id"], name: "index_rest_amounts_on_trade_process_id"
   end
 
+  create_table "session_logs", force: :cascade do |t|
+    t.text "change_log"
+    t.bigint "coin_session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coin_session_id"], name: "index_session_logs_on_coin_session_id"
+  end
+
   create_table "trade_processes", force: :cascade do |t|
     t.date "end_time"
     t.datetime "created_at", null: false
@@ -90,4 +98,5 @@ ActiveRecord::Schema.define(version: 20171218201137) do
   add_foreign_key "coin_sessions", "trade_processes"
   add_foreign_key "coin_updates", "coin_sessions"
   add_foreign_key "rest_amounts", "trade_processes"
+  add_foreign_key "session_logs", "coin_sessions"
 end

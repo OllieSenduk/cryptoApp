@@ -17,6 +17,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'will_paginate', '~> 3.1.0'
+gem 'groupdate'
+gem "chartkick"
 
 group :development do
   gem 'web-console', '>= 3.3.0'

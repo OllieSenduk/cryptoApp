@@ -1,0 +1,16 @@
+<h3>
+  Coin Session <%= coin_session.id %>
+</h3>
+<strong>
+  last known value € <%= coin_session.last_known_value.round(2) %>
+</strong>
+<div class="log-card">
+    <% if coin_session.session_log.change_log == "" %>
+      <p>
+        Nothing here yet unfortunately
+      </p>
+    <% else %>
+    <%= simple_format(truncate coin_session.session_log.change_log, length: 150) %>
+    <% end %>
+  <%= render partial: "shared/cards/log_card_modal", locals: { coin_session: coin_session } %>
+</div>
