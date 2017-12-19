@@ -8,24 +8,61 @@
     <%= render partial: "shared/banners/banner_stats", locals: { trade_process: @trade_process } %>
   <% end %>
 </div>
-
-
-<div class="container">
-  <div class="row">
+<div class="filler border-bottom" style="background-image:url('<%= image_path 'pencil-machine.gif' %>');"></div>
+<% if @timeline.any? %>
+  <div class="timeline-container border-bottom">
     <h2 class="text-center">
-      Session logs
+      Timeline last hour
     </h2>
-    <% @coin_sessions.each do |coin_session| %>
-      
-      <% unless coin_session.session_log.nil? %>
-        <div class="col-xs-12 col-lg-6">
-          <%= render partial: "shared/cards/log_card", locals: { coin_session: coin_session } %>
-        </div>
-      <% end %>
+      <%= timeline @timeline, adapter: "google" %>
+  </div>
+<% end %>
+<div class="banner-columns-container">
+  <div class="logs-container">
+    <div class="row">
+      <h2 class="text-center">
+        Session logs
+      </h2>
+      <% @coin_sessions.each do |coin_session| %>
+        
+        <% unless coin_session.session_log.nil? %>
+          <div class="col-xs-12 col-lg-6">
+            <%= render partial: "shared/cards/log_card", locals: { coin_session: coin_session } %>
+          </div>
+        <% end %>
 
-    <% end %>
-    <div class="paginate-logs">
-      <%= will_paginate @coin_sessions %>
+      <% end %>
+      <div class="paginate-logs">
+        <%= will_paginate @coin_sessions, param_name: 'log_page' %>
+      </div>
+    </div>
+  </div>
+  <div class="banner-text-full">
+    <div class="banner-content-chart">
+      <h2 class="text-center">
+        Last hour
+      </h2>
+      <%= line_chart @trade_process.coin_sessions.where(updated_at: (Time.now - 1.hour)..Time.now).group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
+      colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
+      curve: true,
+      min: 50, 
+      max: 150, discrete: true 
+      %>
+    </div>
+    <div class="banner-content-chart">
+      <h2 class="text-center">
+        Last day
+      </h2>
+      <%= line_chart @trade_process.coin_sessions.where(updated_at: (Time.now - 24.hours)..Time.now).group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
+      colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
+      curve: true,
+      min: 50, 
+      max: 150, discrete: true 
+      %>
     </div>
   </div>
 </div>
+
+
+
+

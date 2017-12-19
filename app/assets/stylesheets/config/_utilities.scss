@@ -1,3 +1,21 @@
 .border-bottom {
   border-bottom: 10px solid #ffe5e6;
 }
+
+.border-top {
+  border-top: 10px solid #ffe5e6;
+}
+
+.slogan {
+  font-weight: 700;
+  font-size: 100px;
+}
+
+.filler {
+  background-image: url(/assets/pencil-machine-85df73b….gif);
+  width: 100vw;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}

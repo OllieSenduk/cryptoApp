@@ -8,7 +8,6 @@
       </h2>
     </div>
     <div class="banner-content white">
-      <ul class="trade-list">
         <h3 class="text-center">
           Trade processes
         </h3>
@@ -18,11 +17,11 @@
             <tr class="<%= 'even' if index.even? %>">
               <td>
                 <%= link_to trade_process_path(trade_process) do %>
-                  <%= index + 1 %>
+                  <%= index + 1 %>.
                 <% end %>
               </td>
               <td>
-                <%= link_to trade_process_path(trade_process) do %>
+                <%= link_to trade_process_path(trade_process), "data-balloon": "#{trade_process.coin_sessions.count} sessions", "data-balloon-pos": "up" do %>
                   <%= trade_process.coin_sessions.last.coin.name %>
                 <% end %>
               </td>
@@ -33,11 +32,25 @@
             <% end %>
          </tbody>
         </table>
-        <%= will_paginate @trade_processes %>
-      </ul>
+        <%= will_paginate @trade_processes, param_name: 'process_page' %>
     </div>
   </div>
 
 </div>
 
-<%= render partial: "shared/coin_stats", locals: { coins: @coins } %>
+<div class="banner-columns-container border-top">
+  <%= render partial: "shared/coin_stats", locals: { coins: @coins } %>
+  <div class="banner-text-full">
+    <div class="banner-content">
+      <h2 class="slogan">
+        DON'T <br>
+        PANIC
+      </h2>
+    </div>
+  </div>
+</div>
+
+
+
+
+

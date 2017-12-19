@@ -1,5 +1,14 @@
 <div class="banner-text-full">
   <div class="banner-content">
+    <%= pie_chart CoinSession.joins(:coin).group('coins.name').limit(5).count, 
+      donut: true, 
+      legend: false,
+      height: "200px",
+      width: "200px",
+      colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] 
+      %>
+  </div>
+  <div class="banner-content">
       <h2 class="text-center">
         All coins used
       </h2>
@@ -42,5 +51,5 @@
         </tbody>
       </table>
   </div>
-  <%= will_paginate coins %>
+  <%= will_paginate coins, param_name: 'coin_page' %>
 </div>

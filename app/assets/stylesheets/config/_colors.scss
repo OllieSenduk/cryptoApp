@@ -2,10 +2,27 @@
 
 // For example:
 $red: #fd3e48;
-$blue: #469AE0;
+$blue: #3e48fd;
 $yellow: #FDB631;
 $orange: #E67E22;
 $green: #32B796;
 $gray: #333333;
 $light-gray: #F4F4F4;
+$darker-gray: #8e8b8b;
 $pink: #ffe5e6;
+
+// Shades of red ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] 
+
+$shades-red-1: #e33740;
+$shades-red-2: #ca3139;
+$shades-red-3: #b12b32;
+$shades-red-4: #97252b;
+$shades-red-5: #7e1f24;
+
+// tints of red ["#fd3e48", "#fd515a", "#fd646c", "#fd777e", "#fd8b91", "#fe9ea3"] 
+
+$tints-red-1: #fd515a;
+$tints-red-2: #fd646c;
+$tints-red-3: #fd777e;
+$tints-red-4: #fd8b91;
+$tints-red-5: #fe9ea3;

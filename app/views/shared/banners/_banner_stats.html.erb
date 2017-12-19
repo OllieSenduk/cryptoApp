@@ -53,7 +53,7 @@
         </tr>
         <tr>
           <td class="header">
-            Amount of transactions with loss
+            Amount of transactions under <%= ENV["INITIAL_VALUE"] %>
           </td>
           <td>
             <%= trade_process.coin_sessions.where("last_known_value < ?", ENV["INITIAL_VALUE"]).count %>

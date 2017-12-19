@@ -1,7 +1,7 @@
 table.simple-stats {
   td.header {
     font-size: 15px;
-    font-weight: lighter;
+    font-weight: 300;
   }
   tr > td:last-child {
     text-align: right;
@@ -13,8 +13,13 @@ table.simple-stats {
 
 table.trade_processes {
   width: 100%;
+  flex-grow: 1;
   tr.even {
     background-color: $light-gray;
+  }
+  tr td:last-child {
+    text-align: right;
+    padding-right: 20px;
   }
   a {
     display: flex;

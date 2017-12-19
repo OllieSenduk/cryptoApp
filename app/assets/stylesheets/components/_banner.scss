@@ -2,19 +2,30 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  .banner-text, .banner-stats {
+  .banner-text, .banner-stats, .banner-text-full, .logs-container {
     flex: 0 0 50%;
   }
 }
 
+.logs-container {
+  padding: 0 20px;
+}
+
 .banner-text-full {
-  border-top: 10px solid $pink;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 0 20px;
+  .banner-content-chart {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .banner-text {
@@ -77,6 +88,7 @@
   padding: 0 20px;
   flex-direction: column;
   .banner-content {
+    flex-direction: column;
     position: relative;
     background-size: cover;
     background-position: center;
@@ -110,7 +122,7 @@
     border-bottom: 10px solid $pink;
   }
   .banner-columns-container {
-    height: 200vh;
+    min-height: 200vh;
     overflow: hidden;
     flex-direction: column;
     .banner-text, .banner-stats {
@@ -133,7 +145,7 @@
     border-right: 10px solid $pink;
   }
   .banner-columns-container {
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
     flex-direction: row;
     .banner-text, .banner-stats {

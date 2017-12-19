@@ -40,7 +40,12 @@ class DetermineChangeService
       # SELL NOW
       @session_log.change_log << "\nValue dropped - DetermineChangeService (#{@coin_session.last_known_value.round(3)} => #{@current_value_of_crypto_in_euro.round(3)})"
       @session_log.save
-      SellNowService.new(best_bet_outcome: @best_bet_outcome, coin_session: @coin_session, current_value_of_crypto_in_euro: @current_value_of_crypto_in_euro).call
+      if @best_bet_outcome[0][0] == @coin_session.coin.symbol
+        @session_log.change_log << "\nBest coin still current coin - DetermineChangeService (#{@coin_session.last_known_value.round(3)} => #{@current_value_of_crypto_in_euro.round(3)})"
+        @session_log.save
+      else
+        SellNowService.new(best_bet_outcome: @best_bet_outcome, coin_session: @coin_session, current_value_of_crypto_in_euro: @current_value_of_crypto_in_euro).call
+      end
     else
       @session_log.change_log << "\nI dunno - DetermineChangeService"
       @session_log.save
