@@ -1,7 +1,6 @@
 class InitiateCoinReviewService
   def initialize
     @coindata = AllCoinDataService.new.call
-    @best_bet_outcome = best_bet
   end
 
   def call
@@ -21,15 +20,15 @@ class InitiateCoinReviewService
   def check_coin_session_status(trade_process)
     if trade_process.coin_sessions.last.nil?
       CoinSessionCreationService.new(
-        trade_process: trade_process, 
-        best_bet_outcome: @best_bet_outcome, 
+        trade_process: trade_process,
+        best_bet_outcome: trade_strategy(trade_process),
         buy_in_euro: ENV["INITIAL_VALUE"].to_i
         ).call
       trade_process.rest_amount.amount_of_transactions += 1
     elsif trade_process.coin_sessions.last.status == "running"
       DetermineChangeService.new(
-        coin_session: trade_process.coin_sessions.last, 
-        best_bet_outcome: @best_bet_outcome
+        coin_session: trade_process.coin_sessions.last,
+        best_bet_outcome: trade_strategy(trade_process)
         ).call
     elsif trade_process.coin_sessions.last.status == "pending"
       # This probably triggers when the transaction hasn't been finalized yet - Possibly stop
@@ -42,15 +41,17 @@ class InitiateCoinReviewService
   def check_rest_amount(trade_process)
     if trade_process.rest_amount.amount > ENV["INITIAL_VALUE"].to_i
       trade_process.rest_amount.amount -= 100
-      trade_process.save 
+      trade_process.save
       trade_process = InitiateTradeService.new.call
     else
       trade_process = TradeProcess.last
     end
   end
 
-  def best_bet
-    BestBetService.new(fastest_risers: fastest_risers).call
+  def trade_strategy(trade_process)
+    if trade_process.strategy == "best_bet"
+      BestBetService.new(fastest_risers: fastest_risers).call
+    end
   end
 
   def fastest_risers
