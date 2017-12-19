@@ -43,7 +43,7 @@
         Last three hours
       </h2>
       <% last_three_hours = @trade_process.coin_sessions.where(updated_at: (Time.now - 3.hour)..Time.now) %>
-      <%= line_chart last_three_hours.group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
+      <%= line_chart last_three_hours.group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }.sort_by { |x| DateTime.parse(x[0]) }, 
       colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
       curve: true,
       min: last_three_hours.order(last_known_value: :asc).limit(1).first.last_known_value - 10, 
@@ -56,7 +56,7 @@
         Last day
       </h2>
       <% last_24_hours = @trade_process.coin_sessions.where(updated_at: (Time.now - 24.hours)..Time.now) %>
-      <%= line_chart last_24_hours.group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }, 
+      <%= line_chart last_24_hours.group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }.sort_by { |x| DateTime.parse(x[0]) }, 
       colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
       curve: true,
       min: last_24_hours.order(last_known_value: :asc).limit(1).first.last_known_value - 10, 
