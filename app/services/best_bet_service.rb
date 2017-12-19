@@ -35,7 +35,7 @@ class BestBetService
         result[coin["symbol"]]["points"] += modifier
       else
         result[coin["symbol"]] = {
-          "points" => modifier, 
+          "points" => modifier,
           "data" => coin
         }
       end
