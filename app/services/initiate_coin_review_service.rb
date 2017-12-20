@@ -49,8 +49,12 @@ class InitiateCoinReviewService
   end
 
   def trade_strategy(trade_process)
-    if trade_process.strategy == "best_bet"
-      BestBetService.new(fastest_risers: fastest_risers).call
+    if trade_process.strategy == "compiled_best"
+      CompiledBestStrategy.new(fastest_risers: fastest_risers).call
+    elsif trade_process.strategy == "best_hour"
+      BestHourStrategy.new(fastest_risers: fastest_risers).call
+    else
+      BestHourStrategy.new(fastest_risers: fastest_risers).call
     end
   end
 

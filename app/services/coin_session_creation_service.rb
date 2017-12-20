@@ -23,7 +23,7 @@ class CoinSessionCreationService
       coin_session.last_known_value = coin_session.amount_in_crypto * @best_bet_amount_in_euro
       SessionLog.create(
       coin_session: coin_session,
-      change_log: "Coin: #{@coin.name}\nTrade process: #{@trade_process.id}\nAmount in crypto: #{coin_session.amount_in_crypto}\nStarting value in euro: #{coin_session.last_known_value}")
+      change_log: "Coin: #{@coin.name}\nTrade process: #{@trade_process.id}\nTrade Strategy: #{@trade_process.strategy}\nAmount in crypto: #{coin_session.amount_in_crypto}\nStarting value in euro: #{coin_session.last_known_value}")
       coin_session.save
   end
 
