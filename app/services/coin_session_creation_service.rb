@@ -16,7 +16,7 @@ class CoinSessionCreationService
 
   def create_new_coin_session
     coin_session = CoinSession.new(
-      trade_process: @trade_process, 
+      trade_process: @trade_process,
       coin: @coin,
       amount_in_crypto: (@buy_in_euro / @best_bet_amount_in_euro)
       )
