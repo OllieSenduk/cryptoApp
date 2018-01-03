@@ -1,4 +1,4 @@
-class BestBetService
+class Strategies::AttributionStrategyService
   def initialize(attributes)
     @fastest_risers = attributes[:fastest_risers]
   end

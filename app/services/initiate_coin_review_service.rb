@@ -49,8 +49,15 @@ class InitiateCoinReviewService
   end
 
   def trade_strategy(trade_process)
-    if trade_process.strategy == "best_bet"
-      BestBetService.new(fastest_risers: fastest_risers).call
+    case trade_process.strategy
+    when "attribution"
+      Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
+    when "daily_fastest"
+      Strategies::DailyFastestStrategyService.new(fastest_risers: fastest_risers)
+    when "weekly_fastest"
+      Strategies::WeeklyFastestStrategyService.new(fastest_risers: fastest_risers)
+    else
+      Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
     end
   end
 
