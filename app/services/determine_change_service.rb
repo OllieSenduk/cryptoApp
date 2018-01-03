@@ -7,6 +7,7 @@ class DetermineChangeService
 
   def call
     current_price_in_euro = SingleCoinDataService.new(coin: @coin_session.coin).call[0]["price_eur"].to_f
+    update_coin(@coin_session.coin, current_price_in_euro)
     @current_value_of_crypto_in_euro = @coin_session.amount_in_crypto * current_price_in_euro
     if coin_in_best?
       @session_log.change_log << "\nCoin in best - DetermineChangeService | #{Time.now.in_time_zone("Amsterdam").strftime("%H:%M on %A, %e %B %Y")}"
@@ -20,6 +21,11 @@ class DetermineChangeService
   end
 
   private
+
+  def update_coin(coin, current_price_in_euro)
+    coin.last_known_price_in_euros = current_price_in_euro
+    coin.save
+  end
 
   def coin_in_best?
     @best_bet_outcome.select {|e| e[0] == @coin_session.coin.symbol }

@@ -3,6 +3,7 @@ class CoinSessionCreationService
     @trade_process = attributes[:trade_process]
     @best_bet_outcome = attributes[:best_bet_outcome]
     @buy_in_euro = attributes[:buy_in_euro]
+    @previous_coin = attributes[:previous_coin]
     @best_coin_symbol = @best_bet_outcome[0][0]
     @best_bet_amount_in_euro = @best_bet_outcome[0][1]["data"]["price_eur"].to_f
   end
@@ -16,6 +17,7 @@ class CoinSessionCreationService
 
   def create_new_coin_session
     coin_session = CoinSession.new(
+      previous_coin: @previous_coin,
       trade_process: @trade_process, 
       coin: @coin,
       amount_in_crypto: (@buy_in_euro / @best_bet_amount_in_euro)
