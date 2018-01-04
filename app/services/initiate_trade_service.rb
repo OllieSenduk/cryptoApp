@@ -1,6 +1,6 @@
 class InitiateTradeService
   def initialize
-    @strategies =  ["attribution", "daily_fastest", "weekly fastest"]
+    @strategies =  ["attribution", "daily_fastest", "weekly_fastest"]
   end
 
   def call

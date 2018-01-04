@@ -66,8 +66,8 @@ class DetermineChangeService
     if @best_bet_outcome[0][0] == @coin_session.coin.symbol
       @session_log.change_log << "\nBest coin still current coin - DetermineChangeService (#{@coin_session.last_known_value.round(3)} => #{@current_value_of_crypto_in_euro.round(3)})"
       @session_log.save
-    elsif @coin_session.trade_process.strategy == "daily_fastest"
-      @session_log.change_log << "\nKeeping daily fastest"
+    elsif @coin_session.trade_process.strategy == "daily_fastest" || @coin_session.trade_process.strategy == "weekly_fastest"
+      @session_log.change_log << "\nKeeping #{@coin_session.trade_process.strategy}"
       @session_log.save
     else
       SellNowService.new(best_bet_outcome: @best_bet_outcome, coin_session: @coin_session, current_value_of_crypto_in_euro: @current_value_of_crypto_in_euro).call
