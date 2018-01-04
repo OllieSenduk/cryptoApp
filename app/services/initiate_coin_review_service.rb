@@ -53,9 +53,9 @@ class InitiateCoinReviewService
     when "attribution"
       Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
     when "daily_fastest"
-      Strategies::DailyFastestStrategyService.new(fastest_risers: fastest_risers)
+      Strategies::DailyFastestStrategyService.new(fastest_risers: fastest_risers).call
     when "weekly_fastest"
-      Strategies::WeeklyFastestStrategyService.new(fastest_risers: fastest_risers)
+      Strategies::WeeklyFastestStrategyService.new(fastest_risers: fastest_risers).call
     else
       Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
     end
