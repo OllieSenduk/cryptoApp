@@ -30,7 +30,7 @@ class SellNowService
 
   def create_next_session
     CoinSessionCreationService.new(
-      previous_coin: @coin_session.coin
+      previous_coin: @coin_session.coin,
       trade_process: @coin_session.trade_process,
       best_bet_outcome: @best_bet_outcome,
       buy_in_euro: (@current_value_of_crypto_in_euro > ENV["INITIAL_VALUE"].to_i ? ENV["INITIAL_VALUE"].to_i : @current_value_of_crypto_in_euro)
