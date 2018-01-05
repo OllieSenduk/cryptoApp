@@ -51,13 +51,13 @@ class InitiateCoinReviewService
   def trade_strategy(trade_process)
     case trade_process.strategy
     when "attribution"
-      Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
+      ::Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
     when "daily_fastest"
-      Strategies::DailyFastestStrategyService.new(fastest_risers: fastest_risers).call
+      ::Strategies::DailyFastestStrategyService.new(fastest_risers: fastest_risers).call
     when "weekly_fastest"
-      Strategies::WeeklyFastestStrategyService.new(fastest_risers: fastest_risers).call
+      ::Strategies::WeeklyFastestStrategyService.new(fastest_risers: fastest_risers).call
     else
-      Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
+      ::Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
     end
   end
 

@@ -35,3 +35,4 @@ class InitiateTradeService
     end
   end
 end
+
