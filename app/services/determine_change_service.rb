@@ -28,7 +28,7 @@ class DetermineChangeService
   end
 
   def coin_in_best?
-    @best_bet_outcome.select {|e| e["symbol"] == @coin_session.coin.symbol }
+    @best_bet_outcome.select {|e| e[0] == @coin_session.coin.symbol }
   end
 
   def check_value

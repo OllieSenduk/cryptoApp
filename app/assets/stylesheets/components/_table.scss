@@ -14,6 +14,10 @@ table.simple-stats {
 table.trade_processes {
   width: 100%;
   flex-grow: 1;
+  .strategy {
+    font-size: 10px;
+    margin-bottom: 0;
+  }
   tr.even {
     background-color: $light-gray;
   }

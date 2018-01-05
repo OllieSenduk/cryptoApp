@@ -31,4 +31,8 @@ class Strategies::WeeklyFastestStrategyService
       end
     end
   end
+
+  def sort_by_best_result(result)
+    result.sort_by {|item| item.last["points"] }.reverse
+  end
 end

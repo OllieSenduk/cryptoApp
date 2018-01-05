@@ -1,3 +1,4 @@
+
 <div class="banner-columns-container">
   <%= render partial: "shared/banners/banner" %>
 
@@ -8,31 +9,40 @@
       </h2>
     </div>
     <div class="banner-content white">
-        <h3 class="text-center">
-          Trade processes
-        </h3>
-        <table class="trade_processes">
-          <tbody>
-            <% @trade_processes.each_with_index do |trade_process, index| %>
-            <tr class="<%= 'even' if index.even? %>">
-              <td>
-                <%= link_to trade_process_path(trade_process) do %>
-                  <%= index + 1 %>.
-                <% end %>
-              </td>
-              <td>
-                <%= link_to trade_process_path(trade_process), "data-balloon": "#{trade_process.coin_sessions.count} sessions", "data-balloon-pos": "up" do %>
-                  <%= trade_process.coin_sessions.last.coin.name %>
-                <% end %>
-              </td>
-              <td>
-                € <%= trade_process.rest_amount.amount.round(2) %>
-              </td>
-            </tr>
-            <% end %>
-         </tbody>
-        </table>
-        <%= will_paginate @trade_processes, param_name: 'process_page' %>
+      <h3 class="text-center">
+        Trade processes
+      </h3>
+      <table class="trade_processes">
+        <tbody>
+          <% @trade_processes.each_with_index do |trade_process, index| %>
+          <tr class="<%= 'even' if index.even? %>">
+            <td>
+              <%= link_to trade_process_path(trade_process) do %>
+              <% if params[:process_page] %>
+              <%= ((params[:process_page].to_i - 1) * 5) + (index + 1) %>
+              <% else %>
+              <%= index + 1 %>.
+              <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to trade_process_path(trade_process), "data-balloon": "#{trade_process.coin_sessions.count} sessions", "data-balloon-pos": "up" do %>
+              <%= trade_process.coin_sessions.last.coin.name %>
+              <% end %>
+            </td>
+            <td>
+              <p class="strategy">
+                <%= trade_process.strategy.gsub("_", " ").capitalize %>
+              </p>
+            </td>
+            <td>
+              € <%= trade_process.rest_amount.amount.round(2) %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @trade_processes, param_name: 'process_page' %>
     </div>
   </div>
 
