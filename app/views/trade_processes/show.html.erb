@@ -43,6 +43,8 @@
         Last three hours
       </h2>
       <% last_three_hours = @trade_process.coin_sessions.where(updated_at: (Time.now - 3.hour)..Time.now) %>
+      <% unless last_three_hours %>
+        
       <%= line_chart last_three_hours.group(:updated_at).sum(:last_known_value).map{|date,value| [date.strftime("%e %b - %H:%M"), value] }.sort_by { |x| DateTime.parse(x[0]) }, 
       colors: ["#fd3e48", "#e33740", "#ca3139", "#b12b32", "#97252b", "#7e1f24"] ,
       curve: true,
@@ -50,6 +52,7 @@
       max: last_three_hours.order(last_known_value: :desc).limit(1).first.last_known_value + 10, 
       discrete: true 
       %>
+      <% end %>
     </div>
     <div class="banner-content-chart">
       <h2 class="text-center">
