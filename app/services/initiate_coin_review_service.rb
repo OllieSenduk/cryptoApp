@@ -43,6 +43,7 @@ class InitiateCoinReviewService
       trade_process.rest_amount.amount -= 100
       trade_process.save
       trade_process = InitiateTradeService.new.call
+      check_coin_session_status(trade_process)
     else
       trade_process = TradeProcess.last
     end
