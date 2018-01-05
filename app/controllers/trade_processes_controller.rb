@@ -1,11 +1,17 @@
 class TradeProcessesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :index]
 
   def show
     @trade_process = TradeProcess.find(params[:id])
     @coins = Coin.order("coin_sessions_count ASC")
     @coin_sessions = @trade_process.coin_sessions.order('updated_at DESC').paginate(page: params[:log_page], per_page: 4)
     set_timeline
+  end
+
+  def index
+    @amount_of_trade_processes = TradeProcess.count
+    @trade_processes = TradeProcess.all.paginate(page: params[:process_page], per_page: 5)
+    @coins = Coin.order("coin_sessions_count DESC").paginate(page: params[:coin_page], per_page: 5)
   end
 
   private

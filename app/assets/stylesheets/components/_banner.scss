@@ -28,14 +28,46 @@
   }
 }
 
-.banner-text {
-  position: relative;
+@media(max-width: 900px) {
+  .banner-text-smaller {
+    height: 40vh;
+    margin-top: 60px;
+    .fa {
+      opacity: 1;
+    }
+  }
+}
+
+@media(min-width: 900px) {
+  .banner-text-smaller {
+    height: 70vh;
+    margin-top: 40px;
+    .fa {
+      opacity: 1;
+    }
+  }
+}
+
+
+.banner-text-larger {
   height: 100vh;
-  width: 100vw;
+  .fa {
+    opacity: 0.5;
+  }
+}
+
+.banner-text {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  .white-text {
+    color: white;
+  }
   a {
     color: $gray;
     text-decoration: none;
@@ -44,38 +76,50 @@
       text-decoration: none;
     }
   }
-  h1 {
-   text-shadow: -3px 0 black, 0 3px red, 3px 0 green, 0 -3px orange;
- }
- .introduction {
-  font-weight: 200;
-  font-style: italic;
-}
-.last-updated {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  p {
-    margin: 0;
-    font-size: 14px;
-    font-weight: lighter;
-  }
-  i.fa {
-    margin-right: 10px;
-    background-color: $red;
-    color: white;
-    width: 25px;
-    height: 25px;
+  .banner-content {
+    padding: 20px 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    opacity: 0.5;
-    font-size: 16px;
   }
-}
+  h1 {
+    margin: 0;
+    text-shadow: -3px 0 black, 0 3px red, 3px 0 green, 0 -3px orange;
+  }
+  .introduction {
+    margin: 0;
+    font-weight: 200;
+    font-style: italic;
+  }
+  .last-updated {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    .white-and-heavy {
+      color: white;
+      font-weight: 400;
+    }
+    p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: lighter;
+    }
+    i.fa {
+      margin-right: 10px;
+      background-color: $red;
+      color: white;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 16px;
+    }
+  }
 }
 .banner-stats {
   padding: 0 20px;
@@ -157,4 +201,27 @@
 .banner-content.white {
   margin-top: 10px;
   background-color: white;
+}
+
+@media(max-width: 900px) {
+  .exposition-content p {
+    padding: 0 20px;
+  }
+}
+
+.exposition {
+  background-color: $red;
+  color: white;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  .exposition-content {
+    max-width: 500px;
+    span {
+      text-decoration: underline;
+      text-decoration-color: blue;
+    }
+  }
 }

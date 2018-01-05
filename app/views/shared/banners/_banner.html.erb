@@ -1,15 +1,18 @@
-<div class="banner-text">
+<% background_image = background_image || "" %>
+<div class="banner-text <%= size %>" style="background-image:url('<%= image_path background_image %>');">
   <%= link_to root_path do %>
+  <div class="banner-content<%= ' white-text' unless background_image == "" %>">
     <h1>
       Automaat
     </h1>
-  <% end %>
-  <p class="introduction">
-    An experiment
-  </p>
+    <p class="introduction">
+      An experiment
+    </p>
+  </div>
+    <% end %>
   <div class="last-updated">
     <i class="fa fa-gears"></i>
-    <p>
+    <p class="<%= 'white-and-heavy' unless background_image == "" %>">
       Last update ran on <%= CoinSession.last.updated_at.in_time_zone("Amsterdam").strftime("%H:%M on %A, %e %B %Y") %>
     </p>
   </div>

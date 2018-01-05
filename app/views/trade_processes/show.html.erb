@@ -1,8 +1,8 @@
 <div class="banner-columns-container border-bottom">
   <div class="breadcrumbs">
-    <%= link_to "tradeprocess overview", root_path %> < <span>Trade process number <%= @trade_process.id %></span>
+    <%= link_to "tradeprocess overview", trade_processes_path %> < <span>Trade process number <%= @trade_process.id %></span>
   </div>
-  <%= render partial: "shared/banners/banner" %>
+  <%= render partial: "shared/banners/banner", locals: { size: 'banner-text-larger' } %>
 
   <% if @trade_process %>
     <%= render partial: "shared/banners/banner_stats", locals: { trade_process: @trade_process } %>

@@ -1,0 +1,25 @@
+<div class="avatar-card">
+  <%= image_tag profile_image, class: "avatar" %>
+  <div class="avatar-description">
+    <h3>
+      <%= name %>
+    </h3>
+    <p>
+      <%= description.html_safe %>
+    </p>
+    <ul class="list-unstyled">
+      <li>
+        <%= link_to github do %>
+          <i class="fa fa-github"></i><%= github %>
+        <% end %>
+      </li>
+      <% unless website == "" %>
+        <li>
+          <%= link_to website do %>
+            <i class="fa fa-globe"></i> <%= website %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

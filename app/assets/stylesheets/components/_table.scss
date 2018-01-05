@@ -11,6 +11,22 @@ table.simple-stats {
   }
 }
 
+@media(max-width: 900px) {
+  table.trade_processes {
+    font-size: 13px;
+    tr td:nth-child(2) {
+      line-height: 23px;
+    }
+  }
+  table.simple-stats {
+    font-size: 11px;
+    max-width: 95%;
+    tr td:nth-child(1) {
+      line-height: 20px;
+    }
+  }
+}
+
 table.trade_processes {
   width: 100%;
   flex-grow: 1;

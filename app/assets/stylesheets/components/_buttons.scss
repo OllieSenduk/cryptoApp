@@ -1,0 +1,32 @@
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinning-cog {
+  z-index: 999;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    .fa {
+      color: $red;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+    &:hover .fa, &:active .fa {
+     animation: rotating 2s linear infinite;
+   }
+ }
+}
