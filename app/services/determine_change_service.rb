@@ -28,7 +28,7 @@ class DetermineChangeService
   end
 
   def coin_in_best?
-    @best_bet_outcome.select {|e| e[0] == @coin_session.coin.symbol }
+    @best_bet_outcome.select {|e| e[0] == @coin_session.coin.symbol }.any?
   end
 
   def check_value
@@ -68,5 +68,7 @@ class DetermineChangeService
     else
       SellNowService.new(best_bet_outcome: @best_bet_outcome, coin_session: @coin_session, current_value_of_crypto_in_euro: @current_value_of_crypto_in_euro).call
     end
+    @coin_session.last_known_value = @current_value_of_crypto_in_euro
+    @coin_session.save
   end
 end
