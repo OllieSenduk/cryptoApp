@@ -39,7 +39,7 @@ class InitiateCoinReviewService
 
 
   def check_rest_amount(trade_process)
-    if trade_process.rest_amount.amount > ENV["INITIAL_VALUE"].to_i
+    if trade_process.rest_amount.amount > ENV["INITIAL_VALUE"].to_i && TradeProcess.count < 30
       trade_process.rest_amount.amount -= 100
       trade_process.save
       trade_process = InitiateTradeService.new.call
