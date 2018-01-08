@@ -1,0 +1,7 @@
+Coin.destroy_all
+CoinSession.destroy_all
+CoinUpdate.destroy_all
+RestAmount.destroy_all
+SessionLog.destroy_all
+TradeProcess.destroy_all
+User.destroy_all
