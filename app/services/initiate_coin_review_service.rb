@@ -5,6 +5,7 @@ class InitiateCoinReviewService
   end
 
   def call
+    # TODO add hostile_market? somewhere
     if TradeProcess.any?
       TradeProcess.all.each do |trade_process|
         check_rest_amount(trade_process)
@@ -67,5 +68,9 @@ class InitiateCoinReviewService
 
   def fastest_risers
     FastestRisersService.new(coindata: @coindata).call
+  end
+
+  def hostile_market?
+    MarketTendancyService.new.call
   end
 end
