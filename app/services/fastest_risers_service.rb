@@ -4,6 +4,8 @@ class FastestRisersService
   end
 
   def call
+    MarketTendancyService.new.call
+
      {
       best_last_hour: sort_by_change_1h.first(5),
       best_last_24h: sort_by_change_24h.first(5),

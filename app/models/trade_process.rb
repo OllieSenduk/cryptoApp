@@ -9,7 +9,7 @@ class TradeProcess < ApplicationRecord
 
   def decide_strategy
     if TradeProcess.last.nil?
-      self.strategy = "compiled_best"
+      self.strategy = "best_hour"
     elsif TradeProcess.last.strategy == "best_hour"
       self.strategy = "compiled_best"
     else

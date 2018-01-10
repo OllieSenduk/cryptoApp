@@ -61,4 +61,9 @@ class InitiateCoinReviewService
   def fastest_risers
     FastestRisersService.new(coindata: @coindata).call
   end
+
+  def overall_tendancy
+    MarketTendancyService.new.call
+    # returns true or false
+  end
 end
