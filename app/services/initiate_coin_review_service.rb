@@ -5,6 +5,7 @@ class InitiateCoinReviewService
   end
 
   def call
+    # TODO add hostile_market? somewhere
     if TradeProcess.any?
       TradeProcess.all.each do |trade_process|
         check_rest_amount(trade_process)
