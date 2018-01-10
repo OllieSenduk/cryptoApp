@@ -68,4 +68,8 @@ class InitiateCoinReviewService
   def fastest_risers
     FastestRisersService.new(coindata: @coindata).call
   end
+
+  def hostile_market?
+    MarketTendancyService.new.call
+  end
 end
