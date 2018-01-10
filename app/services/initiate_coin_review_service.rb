@@ -1,4 +1,5 @@
 class InitiateCoinReviewService
+
   def initialize
     @coindata = AllCoinDataService.new.call
   end
@@ -57,6 +58,8 @@ class InitiateCoinReviewService
       ::Strategies::DailyFastestStrategyService.new(fastest_risers: fastest_risers).call
     when "weekly_fastest"
       ::Strategies::WeeklyFastestStrategyService.new(fastest_risers: fastest_risers).call
+    when "hourly_fastest"
+      ::Strategies::HourlyFastestStrategy.new(fastest_risers: fastest_risers).call
     else
       ::Strategies::AttributionStrategyService.new(fastest_risers: fastest_risers).call
     end
