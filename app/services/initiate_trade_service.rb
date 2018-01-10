@@ -1,6 +1,6 @@
 class InitiateTradeService
   def initialize
-    @strategies =  ["attribution", "daily_fastest", "weekly_fastest"]
+    @strategies =  ["attribution", "daily_fastest", "weekly_fastest", "hourly_fastest"]
   end
 
   def call
@@ -8,8 +8,8 @@ class InitiateTradeService
       strategy: determine_strategy
       )
     RestAmount.create(
-      trade_process: trade_process, 
-      amount: 0.0, 
+      trade_process: trade_process,
+      amount: 0.0,
       amount_of_transactions: 0
       )
     return trade_process
@@ -35,4 +35,3 @@ class InitiateTradeService
     end
   end
 end
-
