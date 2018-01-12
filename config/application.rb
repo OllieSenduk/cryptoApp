@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module CryptoApp
   class Application < Rails::Application
+    config.generators.test_framework :rspec
+    
     config.generators do |generate|
       generate.assets false
       generate.helper false

@@ -1,0 +1,23 @@
+language: ruby
+rbenv:
+  - 2.3.5
+before_script:
+  - bundle exec rake db:create --all
+  - bundle exec rake db:migrate
+script:
+  - bundle exec rake ci:tests
+services:
+  - postgresql
+notifications:
+  email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: ENV["HEROKU_AUTH_TOKEN"]
+  app:
+    develop: cryptobotnl.herokuapp.com
+    master: cryptobotnl.herokuapp.com
+  on:
+    repo: OllieSenduk/cryptoApp
+  run:
+    - "rails db:migrate"
