@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'json'
+
 class AllCoinDataService
 
   def initialize
@@ -13,9 +14,19 @@ class AllCoinDataService
   private
 
   def searcher
-    coin_data = JSON.parse(open("https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=20").read)
-    store_payload(coin_data)
-    coin_data
+    begin
+      url = "https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=20"
+      coin_data = JSON.parse(open(url).read)
+      store_payload(coin_data)
+      coin_data
+      open(url)
+    rescue OpenURI::HTTPError => error
+      response = error.io
+      puts "#{response.status} #{response.string}"
+      response.string
+    rescue Errno::ENOENT => error
+      'Another error occured, most probebly a timeout'
+    end
   end
 
   def store_payload(coin_data)
