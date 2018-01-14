@@ -26,7 +26,7 @@ describe AllCoinDataService do
       # TODO SEND US A SLACKER NOTIFICATION
     end
 
-    it 'lower level errors' do
+    it 'handles lower level errors' do
       stub_request(:get, "https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=20").to_raise Errno::ENOENT
       expect(AllCoinDataService.new.call).to eq 'Another error occured, most probebly a timeout'
       expect(Backtest.count).to eq 0
