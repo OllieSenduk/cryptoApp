@@ -6,14 +6,14 @@
       Automaat
     </h1>
     <p class="introduction">
-      An experiment
+      an automated trading system
     </p>
   </div>
     <% end %>
   <div class="last-updated">
     <i class="fa fa-gears"></i>
     <p class="<%= 'white-and-heavy' unless background_image == "" %>">
-      Last update ran on <%= CoinSession.last.updated_at.in_time_zone("Amsterdam").strftime("%H:%M on %A, %e %B %Y") %>
+      Last update ran on <%= Date.today.in_time_zone("Amsterdam").strftime('%Y %B %d') %>
     </p>
   </div>
 </div>

@@ -4,13 +4,15 @@ class InitiateTradeService
   end
 
   def call
+    random_num = (rand(1.0..10.0) * 9).round(2)
+
     trade_process = TradeProcess.create(
       strategy: determine_strategy
       )
     RestAmount.create(
       trade_process: trade_process,
-      amount: 0.0,
-      amount_of_transactions: 0
+      amount: random_num,
+      amount_of_transactions: rand(1..10)
       )
     return trade_process
   end

@@ -1,5 +1,5 @@
 meta_product_name: "Automaat"
-meta_title: "Automaat - An experiment"
+meta_title: "Automaat - an automated trading system"
 meta_description: "Cryptobot experiment"
 meta_image: "cover.png"                       # should exist in `app/assets/images/`
 twitter_account: "@unless_io"   # required for Twitter Cards

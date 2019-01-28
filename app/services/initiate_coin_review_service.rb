@@ -6,15 +6,16 @@ class InitiateCoinReviewService
 
   def call
     # TODO add hostile_market? somewhere
-    if TradeProcess.any?
-      TradeProcess.all.each do |trade_process|
-        check_rest_amount(trade_process)
-        check_coin_session_status(trade_process)
-      end
-    else
+    # if TradeProcess.any?
+    #   TradeProcess.all.each do |trade_process|
+    #     check_rest_amount(trade_process)
+    #     check_coin_session_status(trade_process)
+    #   end
+    # else
       trade_process = InitiateTradeService.new.call
       check_coin_session_status(trade_process)
-    end
+      # Remove this commit later
+      # end
   end
 
   private
