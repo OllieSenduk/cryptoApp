@@ -15,7 +15,6 @@ gem 'font-awesome-sass'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
-gem 'webpacker'
 gem 'will_paginate', '~> 3.1.0'
 gem 'groupdate'
 gem "chartkick"
