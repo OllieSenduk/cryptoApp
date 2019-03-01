@@ -20,7 +20,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-5">
       <%= render partial: "shared/cards/avatar_card", locals: {
         profile_image: 'https://kitt.lewagon.com/placeholder/users/olliesenduk',
         name: 'Oliver Senduk',
@@ -29,7 +29,10 @@
         website: 'http://www.ollsum.com'
        } %>
     </div>
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-2">
+      <%= link_to 'View Demo', trade_processes_path %>
+    </div>
+    <div class="col-xs-12 col-md-5">
       <%= render partial: "shared/cards/avatar_card", locals: {
         profile_image: 'https://kitt.lewagon.com/placeholder/users/datene',
         name: 'Lars Böhm',
